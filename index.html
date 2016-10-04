@@ -1,0 +1,36 @@
+<!DOCTYPE html><html xml:lang="pl" dir="ltr" lang="pl" >
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="js/mechanics.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body ng-app="sImpressApp">
+
+<div ng-controller="currDispCtrl" class="container" >
+	<form class="form-group">
+		<input class="form-control" ng-model="fltQuery" type="text" placeholder="Filter by" autofocus>
+   </form>
+   <form role="form" >
+      <div class="form-inline">
+      <input class="form-control" ng-model="dbQueryLimitFrom" type="number" placeholder="enter query" min="0" max="9999"> <label>start from element</label>
+      </div>
+      <div class="form-inline">
+      <input class="form-control" ng-model="dbQueryLimitTo" type="number" placeholder="enter query" min="0" max="9999"> <label>number of elements to show</label>
+      </div>
+      <button ng-click="sendQuery()" class="btn  btn-default">Send query</button>
+   </form>   
+	<div class="well" ng-repeat="item in simJson | filter:fltQuery">
+		<h4 class="panel panel-primary">{{$index+1}}. {{item.title_format}}</h4>
+         <audio ng-src="{{item.trustedpath}}" controls preload="none" type="audio/mpeg">
+            error
+         </audio>
+      <p class="small">
+         Format: {{item.sample_rate}} kHz, {{item.channel_mode}}, {{item.filesize/1000000}} MB <a class="btn btn-primary btn-xs" href="{{item.trustedpath}}">download</a> 
+      </p>
+      {{item.body}}
+   </div>
+</div>
+</body>
+</html>
