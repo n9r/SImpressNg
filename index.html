@@ -1,5 +1,6 @@
 <!DOCTYPE html><html xml:lang="pl" dir="ltr" lang="pl" >
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script src="js/mechanics.js"></script>
@@ -19,9 +20,12 @@
       <div class="form-inline">
       <input class="form-control" ng-model="dbQueryLimitTo" type="number" placeholder="enter query" min="0" max="9999"> <label>number of elements to show</label>
       </div>
-      <button ng-click="sendQuery()" class="btn  btn-default">Send query</button>
+      <button ng-click="sendQuery(true)" class="btn btn-default">Send query</button>
+      <button ng-click="sendQuery()" class="btn btn-default">Mock query</button>
+
+
    </form>   
-	<div class="well" ng-repeat="item in simJson | filter:fltQuery">
+	<div class="well well-sm" ng-repeat="item in simJson | filter:fltQuery">
 		<h4 class="panel panel-primary">{{$index+1}}. {{item.title_format}}</h4>
          <audio ng-src="{{item.trustedpath}}" controls preload="none" type="audio/mpeg">
             error
