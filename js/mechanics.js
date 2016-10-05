@@ -6,8 +6,15 @@ sImpressApp.controller("currDispCtrl", function ($scope, $http, $filter, $sce){
    $scope.dbQueryLimitFrom = 0;
    $scope.dbQueryLimitTo = 5;
 	$scope.getData = function () {
-		$scope.promise = $http.get("php/dbquery.php?lf="+$scope.dbQueryLimitFrom+"&lt="+$scope.dbQueryLimitTo);
-		$scope.promise.then(function(response) { 
+
+	   //Real connection
+/*
+	   $scope.promise = $http.get("php/dbquery.php?lf="+$scope.dbQueryLimitFrom+"&lt="+$scope.dbQueryLimitTo);
+*/
+      // Mocked connection
+      $scope.promise = $http.get("php/mockedDatabaseReply.php");
+
+		$scope.promise.then(function(response) {
 			$scope.simJson = response.data.records;
 		})
       $scope.promise.then (
@@ -21,6 +28,6 @@ sImpressApp.controller("currDispCtrl", function ($scope, $http, $filter, $sce){
 
    $scope.sendQuery = function () {
       $scope.getData();
-   }
+   };
    
 });
