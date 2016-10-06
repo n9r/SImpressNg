@@ -9,60 +9,62 @@
    <link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-app="sImpressApp">
-<header>
-   <p>Connecting to Drupal database with AngularJS.</p>
-</header>
 
 <div ng-controller="currDispCtrl" class="container" >
-   <form role="form">
 
-      <div class="form-group">
-         <input class="form-control" ng-model="fltQuery" type="text" placeholder="Filter by" autofocus>
-      </div>
+    <header>
+        <h1>SoundImpress.pl on Angular and Bootstrap 3.3.7</h1>
+        <p>Connecting to Drupal database with AngularJS. The site uses Bootstrap for responsive grid layout
+            and some basic styling.</p>
+    </header>
 
-      <div class="form-inline">
-         <input class="form-control input-sm" id="dbQueryLimitFrom" ng-model="dbQueryLimitFrom" type="number" placeholder="enter query" min="0" max="9999">
-         <label for="dbQueryLimitFrom">start from element</label>
-      </div>
+    <form role="form">
 
-      <div class="form-inline">
-         <input class="form-control input-sm" id="dbQueryLimitTo" ng-model="dbQueryLimitTo" type="number" placeholder="enter query" min="0" max="9999">
-         <label for="dbQueryLimitTo">number of elements to show</label>
-      </div>
+    <div class="form-group">
+        <input class="form-control" ng-model="fltQuery" type="text" placeholder="Filter by" autofocus>
+    </div>
 
-      <div class="panel">
-         <button class="btn btn-primary btn-sm" type="button" ng-click="sendQuery(true)">Send query</button>
-         <button class="btn btn-default btn-sm" type="button" ng-click="sendQuery()">Mock query</button>
-      </div>
+    <div class="form-inline">
+        <input class="form-control input-sm" id="dbQueryLimitFrom" ng-model="dbQueryLimitFrom" type="number" placeholder="enter query" min="0" max="9999">
+        <label for="dbQueryLimitFrom">start from element</label>
+    </div>
 
-   </form>
+    <div class="form-inline">
+        <input class="form-control input-sm" id="dbQueryLimitTo" ng-model="dbQueryLimitTo" type="number" placeholder="enter query" min="0" max="9999">
+        <label for="dbQueryLimitTo">number of elements to show</label>
+    </div>
 
-   <section>
-      <div class="row">
-         <div class="col-md-6 col-lg-4" ng-repeat="item in simJson | filter:fltQuery">
-            <div class="audio-container">
-               <h4 class="text-center text-crop">
-                  {{$index+1}}. {{item.title_format}}
-               </h4>
+    <div class="panel">
+        <button class="btn btn-primary btn-sm" type="button" ng-click="sendQuery(true)">Send query</button>
+        <button class="btn btn-default btn-sm" type="button" ng-click="sendQuery()">Mock query</button>
+    </div>
+</form>
 
-               <div>
-                  <audio style="width: 100%;" ng-src="{{item.trustedpath}}" controls preload="none" type="audio/mpeg">
-                  error
-                  </audio>
-                  <p class="text-right">
-                     <small>Format: {{item.sample_rate/1000}} kHz {{item.channel_mode}}.</small>
-                     <a class="btn btn-primary btn-xs" href="{{item.trustedpath}}">
-                        download {{item.filesize | toMBFilter}} MB
-                     </a>
-                  </p>
-                  <p class="panel text-crop">
-                     <small>{{item.body}}</small>
-                  </p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
+  <div class="row">
+     <div class="col-md-6 col-lg-4" ng-repeat="item in simJson | filter:fltQuery">
+        <div class="audio-container">
+           <h2 class="text-center text-crop">
+              {{$index+1}}. {{item.title_format}}
+           </h2>
+
+           <div>
+              <audio style="width: 100%;" ng-src="{{item.trustedpath}}" controls preload="none" type="audio/mpeg">
+              error
+              </audio>
+              <p class="text-right">
+                 <small>Format: {{item.sample_rate/1000}} kHz {{item.channel_mode}}.</small>
+                 <a class="btn btn-primary btn-xs" href="{{item.trustedpath}}">
+                    download {{item.filesize | toMBFilter}} MB
+                 </a>
+              </p>
+              <p class="panel text-crop">
+                 <small>{{item.body}}</small>
+              </p>
+           </div>
+        </div>
+     </div>
+  </div>
+
 
 </div>
 </body>
