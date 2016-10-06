@@ -3,3 +3,11 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+
+.audio-container {
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding:    5px;
+    margin:     1px;
+}
