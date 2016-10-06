@@ -28,3 +28,9 @@ sImpressApp.controller("currDispCtrl", function ($scope, $http, $filter, $sce){
       $scope.getData(a);
    };
 });
+
+sImpressApp.filter('toMBFilter', function () {
+   return function(input) {
+     return (Math.floor(input/(1024*1024)*100))/100;
+   }
+});
